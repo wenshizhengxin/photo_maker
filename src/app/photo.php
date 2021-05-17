@@ -56,9 +56,9 @@ class photo extends base
             $id = Args::params('id/d', 0);
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $insertData = [
-                    'photo_name' => Args::params('photo_name/1'),
-                    'url' => upload_file::getStorageRootDir() . Args::params('url/1'),
-                    'description' => Args::params('description/1'),
+                    'photo_name' => Args::params('photo_name/s/1'),
+                    'url' => upload_file::getStorageRootDir() . Args::params('url/s/1'),
+                    'description' => Args::params('description/s'),
                 ];
 
                 $timestamp = time();
@@ -88,19 +88,14 @@ class photo extends base
             } else {
                 if ($id > 0) {
                     $photo = Db::name(Constant::TABLE_IMAGE)->where('id', $id)->find();
+                    $photo['show_url'] = "";
 
-                    if ($photo['url']) {
-                        $files = explode(",", $photo['url']);
-                        $photo['show_url'] = "";
-                        $photo['url'] = $photo['url'];
-                        foreach ($files as $k => $v) {
-                            $photo['show_url'] .= $v . ",";
-                        }
-                        $template['show_url'] = rtrim($photo['show_url'], ",");
-                    } else {
-                        $template['show_url'] = "";
-                        $template['url'] = "";
+                    $tmp = [];
+                    foreach (explode(',', $photo['url']) as $url) {
+                        $tmp[] = LibTemplate::getImgSrc($url);
                     }
+                    $photo['show_url'] = implode(',', $tmp);
+
                     $this->assign('photo', $photo);
                 }
 
@@ -136,12 +131,12 @@ class photo extends base
     {
         try {
             $id = Args::params('id');
-            $res = Db::name('template')->where('id', $id)->delete();
+            $res = Db::name(Constant::TABLE_IMAGE)->where('id', $id)->delete();
             if (!$res) {
                 throw new \Exception('删除失败');
             }
 
-            $this->success();
+            $this->success('删除成功', 'refresh');
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }

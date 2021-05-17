@@ -5,9 +5,10 @@ namespace wenshizhengxin\preview_photo_maker\app;
 
 
 use epii\app\controller;
+use wenshizhengxin\preview_photo_maker\libs\Constant;
 use wslibs\storage_php_sdk\StorageManager;
 
-class upload_file extends controller
+class upload_file extends base
 {
     public function creat_task()
     {

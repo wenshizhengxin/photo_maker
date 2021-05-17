@@ -9,15 +9,28 @@
 namespace wenshizhengxin\preview_photo_maker\app;
 
 
-use epii\admin\center\admin_center_controller;
+use epii\admin\center\admin_center_addons_controller;
 use epii\admin\ui\lib\epiiadmin\jscmd\Alert;
 use epii\admin\ui\lib\epiiadmin\jscmd\Close;
 use epii\admin\ui\lib\epiiadmin\jscmd\CloseAndRefresh;
 use epii\admin\ui\lib\epiiadmin\jscmd\JsCmd;
 use epii\admin\ui\lib\epiiadmin\jscmd\Refresh;
+use epii\server\Tools;
+use epii\template\engine\EpiiViewEngine;
+use wenshizhengxin\preview_photo_maker\libs\Constant;
 
-class base extends admin_center_controller
+class base extends admin_center_addons_controller
 {
+    public function __construct()
+    {
+        // 因为项目目录结构发生了改变，所以得特别设置view引擎
+        $engine = new EpiiViewEngine();
+        $engine->init(["tpl_dir" => __DIR__ . "/../view/", "cache_dir" => Tools::getRuntimeDirectory() . "/cache/view/"]);
+        $this->setViewEngine($engine);
+
+        $this->assign('__addons', Constant::ADDONS);
+    }
+
     /**
      * 功能：成功响应
      * Created at 2021/2/23 16:35 by 陈庙琴
