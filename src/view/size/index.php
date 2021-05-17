@@ -45,7 +45,7 @@
                     data-area="50%,70%"
                     data-btns="edit,del"
                     data-edit-url="?app=size@add&id={id}&__addons={$__addons}"
-                    data-edit-title="添加/修改"
+                    data-edit-title="编辑"
                     data-del-url="?app=size@del&id={id}&__addons={$__addons}"
                     data-del-title="删除"
                 >操作

@@ -61,7 +61,7 @@
     }
 
     function edit1(field_value, row, index, field_name) {
-        return "<a class='btn btn-outline-info btn-sm btn-dialog' data-intop=\"1\" data-area=\"90%,90%\" data-title='添加/修改' href='?app=photo@add&id=" + row.id + "&__addons={$__addons}'><i class='fa fa-pencil-square-o' ></i>编辑</a>";
+        return "<a class='btn btn-outline-info btn-sm btn-dialog' data-intop=\"1\" data-area=\"90%,90%\" data-title='编辑' href='?app=photo@add&id=" + row.id + "&__addons={$__addons}'><i class='fa fa-pencil-square-o' ></i>编辑</a>";
     }
 
     // function matching(field_value, row, index, field_name) {

@@ -121,26 +121,15 @@ class template extends base
                         ->distinct(true)
                         ->column('tag_id');
                     $template['tag_ids'] = $tagIds;
+                    $template['img_url'] = LibTemplate::getImgSrc($template['img']);
 
-                    if ($template['img']) {
-                        $files = explode(",", $template['img']);
-                        $template['show_url'] = "";
-                        $template['url'] = $template['img'];
-                        foreach ($files as $k => $v) {
-                            $template['show_url'] .= upload_file::getStorageRootDir() . $v . ",";
-                        }
-                        $template['show_url'] = rtrim($template['show_url'], ",");
-                    } else {
-                        $template['show_url'] = "";
-                        $template['url'] = "";
-                    }
                     $this->assign('template', $template);
                 }
 //                $tagIds=[1,2];
 
                 $sizeOptions = LibSize::getOptions([], ['id' => 0, 'name' => '————请选择————']);
                 $this->assign('sizeOptions', $sizeOptions);
-                $tagOptions = LibTag::getOptions();
+                $tagOptions = LibTag::getOptions(['status' => Constant::TAG_STATUS_ACTIVE]);
                 $this->assign('tags', $tagOptions);
 
                 $this->adminUiDisplay();

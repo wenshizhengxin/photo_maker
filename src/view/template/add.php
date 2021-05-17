@@ -22,7 +22,7 @@
                name="img"
                id="img"
                value="{? $template['img']}"
-               data-src="{? $template['show_url']}">
+               data-src="{? $template['img_url']}">
     </div>
 
     <div class="form-group">
