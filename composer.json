@@ -1,0 +1,26 @@
+{
+    "name": "wenshizhengxin/preview_photo_maker",
+    "description": "epii-admin框架 预览照片生成器",
+    "authors": [
+        {
+            "name": "Temple Chan",
+            "email": "1421224516@qq.com"
+        },
+        {
+            "name": "Mr Hu",
+            "email": "804949919@qq.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.0",
+        "epii/admin-center": ">=0.0.1",
+        "wslibs/storage_php_sdk": ">=0.0.1",
+        "wenshizhengxin/image_synthesizer": "^0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "wenshizhengxin\\preview_photo_maker\\": "src/"
+        }
+    }
+}
