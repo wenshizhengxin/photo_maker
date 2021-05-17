@@ -22,5 +22,13 @@
         "psr-4": {
             "wenshizhengxin\\preview_photo_maker\\": "src/"
         }
+    },
+    "extra": {
+        "epii_admin_addons": {
+            "app": "wenshizhengxin\\preview_photo_maker\\App",
+            "title": "文始预览照片生成器",
+            "version": "0.0.1",
+            "base_name_space": "wenshizhengxin\\preview_photo_maker\\app"
+        }
     }
 }
