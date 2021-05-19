@@ -35,7 +35,7 @@ class workbench extends base
             exit;
         }
 
-        $list = $query = Db::name(Constant::TABLE_TEMPLATE)
+        $list = Db::name(Constant::TABLE_TEMPLATE)
             ->orderRand()
             ->limit(4)
             ->select();
@@ -80,6 +80,7 @@ class workbench extends base
                 $maker->setStartPosition($p[0], $p[1]);
                 $maker->setBaseWidth($p[2] - $p[0]);
                 $row['result_image_url'] = $maker->make();
+                $row['result_image_url'] = str_replace(Tools::getRootFileDirectory() . '/', '', $row['result_image_url']);
 
                 $data[] = $row;
             }
@@ -95,6 +96,7 @@ class workbench extends base
                 throw new \Exception('压缩失败');
             }
             foreach (array_column($data, 'result_image_url') as $file) {
+                $file = Tools::getRootFileDirectory() . '/' . $file;
                 if (is_file($file) === false) {
                     continue;
                 }
