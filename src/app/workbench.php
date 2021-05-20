@@ -78,7 +78,7 @@ class workbench extends base
                 $maker->addBackgroundImage($template['img_src']);
                 $p = explode(',', $template['position']);
                 $maker->setStartPosition($p[0], $p[1]);
-                $maker->setBaseWidth($p[2] - $p[0]);
+                $maker->setEndPosition($p[2], $p[3]);
                 $row['result_image_url'] = $maker->make();
                 $row['result_image_url'] = str_replace(Tools::getRootFileDirectory() . '/', '', $row['result_image_url']);
 

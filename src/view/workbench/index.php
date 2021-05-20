@@ -7,6 +7,11 @@
     #album a {
         margin-right: 0.5rem;
     }
+
+    #templatelist img {
+        max-width: 100%;
+        cursor: pointer
+    }
 </style>
 
 <section class="content" style="padding: 10px">
@@ -19,11 +24,11 @@
                 <div class="card-body">
                     <input type="hidden" name="image_id">
                     <input type="hidden" name="image_url">
-                    <div class="btn-group">
+                    <div class="btn-group" style="margin-bottom: 1rem">
                         <!--                        <button class="btn btn-default btn-sm">上传图片</button>-->
                         <button class="btn btn-default btn-sm" onclick="getImages()">从图库中选择</button>
                     </div>
-                    <div id="album" style="border: 1px solid #DEDEDE;display: none;">
+                    <div id="album" style="display: none;">
                         <!--                        <div class="row">-->
                         <!--                            <div class="col-3">fas</div>-->
                         <!--                            <div class="col-3">fas</div>-->
@@ -53,13 +58,10 @@
                 </div>
                 <div class="card-body">
                     <input type="hidden" name="template_id" value="">
-                    <div class="btn-group">
+                    <div class="btn-group" style="margin-bottom: 1rem">
                         <button class="btn btn-success btn-sm" onclick="onSelectTemplate();">随机选择模板</button>
                     </div>
-                </div>
-
-                <div class="card-body">
-                    <div id="templatelist">
+                    <div id="templatelist" style="">
                         <!--                        <td>-->
                         <!--                            <a class="btn  btn-dialog"  title="点击查看图片" data-intop="1" data-area="60%,90%" data-url="https://wszxstore.blob.core.chinacloudapi.cn/wsoa/uploads/20210513/143712609cc9183c3b2.jpg">-->
                         <!--                            <img width='22%' height='10%' src='https://wszxstore.blob.core.chinacloudapi.cn/wsoa/uploads/20210513/143712609cc9183c3b2.jpg'>-->
@@ -103,7 +105,7 @@
                 var length = rows.length;
                 var total = res.total;
                 var html = '';
-                for (var i = 0; i < parseInt(length - 1 / 4) + 1; i++) {
+                for (var i = 0; i < parseInt((length - 1) / 4) + 1; i++) {
                     html += '<div class="row">';
                     for (var j = 0; j < 4; j++) {
                         var index = 4 * i + j;
@@ -160,15 +162,31 @@
             data: {imgId: 1},
             success: function (res) {
                 if (res.code == 1) {
-                    var data = res.data;
+                    var rows = data = res.data;
+                    var length = data.length;
                     $("#templatelist").empty();
                     var html = '';
                     var tid = '';
-                    for (var i = 0; i < data.length; i++) {
-                        html += "<td><img width='280px' height='400px' src='" + data[i]['img'] + "'></td>";
-                        tid += data[i]['id'] + ",";
-                        $("#templatelist").html(html);
+                    for (var i = 0; i < parseInt((length - 1) / 4) + 1; i++) {
+                        html += '<div class="row">';
+                        for (var j = 0; j < 4; j++) {
+                            var index = 4 * i + j;
+                            console.log(index);
+                            if (index >= length) {
+                                break;
+                            }
+                            html += '<div class="col-3"><img src="' + rows[index].img + '" data-id="' + rows[index].id + '"></div>';
+                            tid += rows[index].id + ",";
+                        }
+                        html += '</div>';
                     }
+                    console.log(html);
+                    // for (var i = 0; i < data.length; i++) {
+                    //     html += "<td><img width='280px' height='400px' src='" + data[i]['img'] + "'></td>";
+                    //     tid += data[i]['id'] + ",";
+                    //     $("#templatelist").html(html);
+                    // }
+                    $("#templatelist").html(html);
                     tid = tid.substr(0, tid.length - 1);
                     $("input[name='template_id']").val(tid);
                 } else {

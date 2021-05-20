@@ -45,12 +45,15 @@ class workbench_api extends base_api
 
             $timestamp = time();
             $maker = new AddBackground();
+            $urlGroups = [];
             foreach (explode(',', $pathList) as $url) {
                 $imageUrl = Helper::getImageUrl($url);
                 $imagePath = Helper::getImagePath($url);
                 if (is_file($imageUrl) == false) {
                     throw new \Exception('上传文件缺失：' . $imageUrl);
                 }
+                $ugKey = basename($imagePath, PATHINFO_BASENAME);
+                $urlGroups[$ugKey] = [];
 
                 foreach ($templates as $template) {
                     $template['img_src'] = Helper::getImageUrl($template['img']);
@@ -66,10 +69,11 @@ class workbench_api extends base_api
                     $maker->addBackgroundImage($template['img_src']);
                     $p = explode(',', $template['position']);
                     $maker->setStartPosition($p[0], $p[1]);
-                    $maker->setBaseWidth($p[2] - $p[0]);
+                    $maker->setEndPosition($p[2], $p[3]);
                     $row['result_image_url'] = $maker->make();
                     $row['result_image_url'] = str_replace(Tools::getRootFileDirectory() . '/', '', $row['result_image_url']);
 
+                    $urlGroups[$ugKey][] = $row['result_image_url'];
                     $data[] = $row;
                 }
             }
@@ -100,7 +104,7 @@ class workbench_api extends base_api
             Db::commit();
             /************事务结束************/
 
-            $this->success(['urls' => $resultImageUrls]);
+            $this->success(['urls' => $resultImageUrls, 'url_groups' => $urlGroups]);
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
