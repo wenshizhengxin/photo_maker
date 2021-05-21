@@ -11,6 +11,7 @@ class Constant
     const TABLE_TEMPLATE_TAG = 'template_tag';
     const TABLE_IMAGE = 'image';
     const TABLE_LOG_MAKING = 'log_making';
+    const TABLE_FRAME = 'frame';
 
     const TAG_STATUS_ACTIVE = 1;
     const TAG_STATUS_INACTIVE = 0;

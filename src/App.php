@@ -55,6 +55,10 @@ class App extends AddonsApp
         if (!$id) {
             return false;
         }
+        $id = $this->addMenu($pid, '边框列表', '?app=frame@index&__addons=' . Constant::ADDONS);
+        if (!$id) {
+            return false;
+        }
 
         return true;
     }
