@@ -35,27 +35,27 @@ class App extends AddonsApp
         if (!$pid) {
             return false;
         }
-        $id = $this->addMenu($pid, '工作台', '?app=workbench@index&__addons=' . Constant::ADDONS);
+        $id = $this->addMenu($pid, '工作台', '?app=workbench@index');
         if (!$id) {
             return false;
         }
-        $id = $this->addMenu($pid, '图片列表', '?app=photo@index&__addons=' . Constant::ADDONS);
+        $id = $this->addMenu($pid, '图片列表', '?app=photo@index');
         if (!$id) {
             return false;
         }
-        $id = $this->addMenu($pid, '模板列表', '?app=template@index&__addons=' . Constant::ADDONS);
+        $id = $this->addMenu($pid, '模板列表', '?app=template@index');
         if (!$id) {
             return false;
         }
-        $id = $this->addMenu($pid, '标签列表', '?app=tag@index&__addons=' . Constant::ADDONS);
+        $id = $this->addMenu($pid, '标签列表', '?app=tag@index');
         if (!$id) {
             return false;
         }
-        $id = $this->addMenu($pid, '尺寸列表', '?app=size@index&__addons=' . Constant::ADDONS);
+        $id = $this->addMenu($pid, '尺寸列表', '?app=size@index');
         if (!$id) {
             return false;
         }
-        $id = $this->addMenu($pid, '边框列表', '?app=frame@index&__addons=' . Constant::ADDONS);
+        $id = $this->addMenu($pid, '边框列表', '?app=frame@index');
         if (!$id) {
             return false;
         }
