@@ -65,7 +65,7 @@ class template extends base
                 $insertData = [
                     'template_name' => Args::params('template_name/s/1'),
                     'size_id' => Args::params('size_id/d/1'),
-                    'img' => upload_file::getStorageRootDir() . Args::params('img/s/1'),
+                    'img' => Args::params('img/s/1'),
                 ];
 
                 $timestamp = time();

@@ -57,7 +57,7 @@ class photo extends base
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $insertData = [
                     'photo_name' => Args::params('photo_name/s/1'),
-                    'url' => upload_file::getStorageRootDir() . Args::params('url/s/1'),
+                    'url' => Args::params('url/s/1'),
                     'description' => Args::params('description/s'),
                 ];
 
