@@ -36,6 +36,8 @@ class frame extends base
 
             return $this->tableJsonData('frame', $where, function ($row) {
                 $row['create_time'] = date('Y-m-d H:i:s', $row['create_time']);
+                $row['left_top_img_src'] = Helper::getImageUrl($row['left_top_img']);
+                $row['left_top_img'] = '<img style="max-height:2rem;" src="' . Helper::getImageUrl($row['left_top_img']) . '">';
                 return $row;
             });
         } catch (\Exception $e) {

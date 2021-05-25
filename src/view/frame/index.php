@@ -36,6 +36,7 @@
 
                 <th data-field="frame_name">边框名称</th>
                 <th data-field="create_time">创建时间</th>
+                <th data-field="left_top_img">样图（左上角）</th>
                 <th data-formatter="epiiFormatter.btns"
                     data-intop="1"
                     data-area="50%,70%"

@@ -15,7 +15,7 @@
     "require": {
         "php": ">=7.0",
         "epii/admin-center": ">=0.0.1",
-        "wenshizhengxin/image_synthesizer": "~0.0"
+        "wenshizhengxin/image_synthesizer": "~0.1"
     },
     "autoload": {
         "psr-4": {
